@@ -1,24 +1,26 @@
-      
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Countdown Timer</title>
   <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 50px;
-      margin: 0;
-      height: 100vh;
-
-      /* Animate background from red → violet over 10s */
+      /* Animate background: red → violet → red over 10s, infinite */
       animation: bgShift 10s linear infinite;
     }
 
     @keyframes bgShift {
       0%   { background-color: red; }
-      100% { background-color: violet; }
+      50%  { background-color: violet; }
+      100% { background-color: red; }
     }
 
     h1 {
@@ -37,25 +39,32 @@
       margin-bottom: 20px;
     }
 
+    /* Fluctuating warning bar at bottom */
     #warning {
-      font-size: 1.5em;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
       color: #fff;
-      text-shadow: 1px 1px 2px #000;
+      font-size: 1.5em;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
       animation: flash 1s step-start infinite;
-      margin-top: 20px;
     }
 
     @keyframes flash {
-      0%, 50%     { opacity: 1; }
-      50.1%, 100% { opacity: 0; }
+      0%, 50%   { opacity: 1; }
+      50.1%,100% { opacity: 0; }
     }
   </style>
 </head>
 <body>
   <h1>Countdown to 5th May 2025, 5:00 PM</h1>
   <div id="timer">Loading…</div>
+
   <div id="warning">
-    ⚠️ Light color is shifting from red to violet, low temperature to high temperature ⚠️
+    ⚠️ Emitted light color is shifting from red to violet, low temperature to high temperature ⚠️
   </div>
 
   <script>
@@ -71,12 +80,12 @@
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("timer").innerHTML =
+      document.getElementById("timer").textContent =
         days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("timer").innerHTML = "EXPIRED";
+        document.getElementById("timer").textContent = "EXPIRED";
         document.getElementById("warning").textContent = "⏰ Time's up! ⏰";
         document.getElementById("warning").style.animation = "none";
       }
