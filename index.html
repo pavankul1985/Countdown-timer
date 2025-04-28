@@ -1,3 +1,4 @@
+      
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +12,13 @@
       margin: 0;
       height: 100vh;
 
-      /* Animate background through VIBGYOR over 10s */
-      animation: bgRainbow 10s linear infinite;
+      /* Animate background from red → violet over 10s */
+      animation: bgShift 10s linear infinite;
     }
 
-    @keyframes bgRainbow {
-      0%   { background-color: violet; }
-      16%  { background-color: indigo; }
-      33%  { background-color: blue; }
-      50%  { background-color: green; }
-      66%  { background-color: yellow; }
-      83%  { background-color: orange; }
-      100% { background-color: red; }
+    @keyframes bgShift {
+      0%   { background-color: red; }
+      100% { background-color: violet; }
     }
 
     h1 {
@@ -42,15 +38,15 @@
     }
 
     #warning {
-      font-size: 2em;
-      color: #ff0000;
+      font-size: 1.5em;
+      color: #fff;
       text-shadow: 1px 1px 2px #000;
       animation: flash 1s step-start infinite;
       margin-top: 20px;
     }
 
     @keyframes flash {
-      0%, 50%   { opacity: 1; }
+      0%, 50%     { opacity: 1; }
       50.1%, 100% { opacity: 0; }
     }
   </style>
@@ -58,7 +54,9 @@
 <body>
   <h1>Countdown to 5th May 2025, 5:00 PM</h1>
   <div id="timer">Loading…</div>
-  <div id="warning">⚠️ Time is running out! ⚠️</div>
+  <div id="warning">
+    ⚠️ Light color is shifting from red to violet, low temperature to high temperature ⚠️
+  </div>
 
   <script>
     // Target: 5 May 2025 5:00 PM IST
