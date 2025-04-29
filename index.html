@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Countdown Timer</title>
+  <title>Countdown Timer - Red to Violet</title>
   <style>
     html, body {
       margin: 0;
@@ -12,13 +12,17 @@
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 50px;
-      /* Animate background: red → violet → red over 10s, infinite */
-      animation: bgShift 10s linear infinite;
+      animation: vibgyorShift 10s linear infinite;
     }
 
-    @keyframes bgShift {
+    @keyframes vibgyorShift {
       0%   { background-color: red; }
-      50%  { background-color: violet; }
+      14%  { background-color: orange; }
+      28%  { background-color: yellow; }
+      42%  { background-color: green; }
+      57%  { background-color: blue; }
+      71%  { background-color: indigo; }
+      85%  { background-color: violet; }
       100% { background-color: red; }
     }
 
@@ -55,7 +59,6 @@
       padding: 0.2em 0;
       box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
       animation: flash 1s step-start infinite;
-      /* allow wrapping so it doesn’t overflow */
       white-space: normal;
       word-wrap: break-word;
       overflow-wrap: anywhere;
@@ -71,11 +74,10 @@
   </div>
 
   <script>
-    // Target: 5 May 2025 5:00 PM IST
     var countDownDate = new Date("May 5, 2025 17:00:00").getTime();
 
     var x = setInterval(function() {
-      var now      = Date.now();
+      var now = Date.now();
       var distance = countDownDate - now;
 
       var days    = Math.floor(distance / (1000 * 60 * 60 * 24));
